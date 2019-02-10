@@ -1,0 +1,3 @@
+#!/bin/bash
+# do not interrupt the terminal when watching video
+nohup /usr/bin/vlc $@ 2>&1> /dev/null &

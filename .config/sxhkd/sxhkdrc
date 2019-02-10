@@ -1,0 +1,293 @@
+# Hint:
+# Use the `xev` command to get the key codes used
+
+#########################
+# SUPER + FUNCTION KEYS #
+#########################
+#
+# Laptop screen resolution
+super + F11
+  nohup xrandr --output eDP1 --mode 2880x1800
+
+# Monitor screen resolution
+super + F12
+  nohup xrandr --output eDP1 --mode 1920x1080
+
+super + F2
+  /home/lappy/.config/sxhkd/scripts/toggle_device.sh 11
+
+#########################
+# SUPER + ... KEYS      #
+#########################
+#Wireless Manager
+super + u
+  wpa_gui
+
+#Toggle fullscreen of window
+super + f
+  bspc node --state \~fullscreen
+
+# Music player
+super + m
+#  urxvtc -name 'Ncmpcpp' -e 'ncmpcpp'
+  kitty --name 'Ncmpcpp' 'ncmpcpp'
+
+# Use a tmux session to wrap ipython
+super + e
+  urxvtc -name 'Ipython' -e '/home/lappy/.config/sxhkd/scripts/ipython.sh'
+#   kitty --name 'Ipython' '/home/lappy/.config/sxhkd/scripts/ipython.sh'
+
+# Use a tmux session to wrap irssi
+super + i
+  urxvtc -name 'Ipython' -e '/home/lappy/.config/sxhkd/scripts/irssi.sh'
+#  kitty --name 'Irssi' '/home/lappy/.config/sxhkd/scripts/irssi.sh'
+
+# Toggle pseudo tiling of window
+super + p
+  bspc node --state \~pseudo_tiled
+
+# Open slack web
+super + b
+  /usr/bin/qutebrowser :open an.slack.com
+
+super + t
+  urxvtc -name 'GoTop' -e gotop
+
+#Browser
+super + o
+  qutebrowser
+
+#Oblogout
+super + x
+    oblogout
+
+#Xkill
+super + Escape
+  xkill
+
+#Terminal emulator
+super + Return
+#  urxvtc
+  kitty
+
+#Ncurses Calendar
+super + c
+  kitty --name 'Wyrd' 'wyrd'
+
+#########################
+# SUPER + SHIFT KEYS    #
+#########################
+
+#Screenshot Full Window
+super + shift + s
+  sleep 0.2 ; scrot -q 100 -s 'screenshot-%Y-%m-%dT%H:%M:%S.jpg' -e 'mv $f /home/lappy/Pictures/screenshots && sxiv /home/lappy/Pictures/screenshots/$f'
+
+#Visualizer
+# super + shift + v
+#   urxvtc -name 'Vis' -e '/home/lappy/.config/sxhkd/scripts/vis.sh'  -fn "xft:Inconsolata:pixelsize=10"
+super + shift + v
+  kitty --name 'Vis' 'cava'
+
+# When ssh'd in, some terminals dont respect kitty
+# Everyone respects urxvt
+super + shift + Return
+  urxvtc
+
+# Neofetch without droping into the terminal
+super + shift + n
+  kitty neofetch_and_chill
+
+# Rofi
+super + shift + d
+  rofi -modi drun -show run
+
+#Reload bspwm
+super + shift + r
+  ~/.config/bspwm/bspwmrc
+
+#reload sxhkd:
+super + shift + s
+  pkill -USR1 -x sxhkd
+
+#kill
+super + shift + q
+  bspc node -c
+
+#Logout
+super + shift + x
+  bspc quit
+
+#Screen-Locker
+super + shift + w
+  slock '/home/lappy/.config/slock/config'
+
+#Simple Mixer
+super + shift + e
+  kitty --name 'AlsaMixer' 'alsamixer'
+
+# Change the WM_CLASS for the window to trigger a color inversion
+# To force a darkmode if needed.
+super + shift + i
+  /home/lappy/.config/sxhkd/scripts/invert.sh
+
+#Quick monitor layout switching from rofi
+super + shift + b
+  ls $HOME/.screenlayout/* | rofi -dmenu | bash
+
+
+#########################
+#     MULTIMEDIA KEYS   #
+#########################
+
+XF86LaunchA
+  gromit-mpx --toggle
+
+XF86LaunchA + shift
+  gromit-mpx --clear
+
+#Raises volume
+XF86AudioRaiseVolume
+  amixer set Master 5%+; /home/lappy/.config/dunst/scripts/volume.sh
+
+#Lowers volume
+XF86AudioLowerVolume
+  amixer set Master 5%-; /home/lappy/.config/dunst/scripts/volume.sh
+
+#Mute
+XF86AudioMute
+  amixer set Master 1+ toggle
+
+#Play / Pause
+XF86AudioPlay
+  mpc toggle; /home/lappy/.config/ncmpcpp/scripts/dbusnotify
+
+#Next
+XF86AudioNext
+  mpc next
+
+#previous
+XF86AudioPrev
+  mpc prev
+
+#Stop
+XF86AudioStop
+  mpc stop
+
+XF86LaunchB
+  idea
+
+#Brightness up
+XF86MonBrightnessUp
+  light -A 5; /home/lappy/.config/dunst/scripts/brightness.sh
+
+#Brightness down
+XF86MonBrightnessDown
+  light -U 5; /home/lappy/.config/dunst/scripts/brightness.sh
+
+#Brightness up
+XF86KbdBrightnessUp
+  light -s sysfs/leds/smc::kbd_backlight -A 5
+
+#Brightness down
+XF86KbdBrightnessDown
+  light -s sysfs/leds/smc::kbd_backlight -U 5
+
+#########################
+# KODI MULTIMEDIA KEYS  #
+#########################
+# https://github.com/nawar/kodi-cli
+#
+
+#Mute
+shift + XF86AudioMute
+  kodi-cli -x
+
+#Raises volume
+shift + XF86AudioRaiseVolume
+  kodi-cli -u
+
+#Lowers volume
+shift + XF86AudioLowerVolume
+  kodi-cli -d
+
+#Play / Pause
+shift + XF86AudioPlay
+  kodi-cli -p
+
+#Next
+shift + XF86AudioNext
+  kodi-cli -j
+
+#previous
+shift + XF86AudioPrev
+  kodi-cli -k
+
+#########################
+# BSPWM LAYOUT KEYS     #
+#########################
+
+#Focus selected desktop FOR QWERTY KEYBOARDS
+super + {1-9,0}
+  bspc desktop -f '^{1-9,10}'
+
+#Move window to selected desktop FOR QWERTY KEYBOARDS
+super + shift + {1-9,0}
+  id=$(bspc query -N -n); bspc node -d ^{1-9,10}; bspc node -f ${id}}
+
+#Focus selected desktop
+alt + Tab
+  bspc desktop -f '^{1-9,10}'
+
+#Focus selected desktop
+super + Tab
+  bspc desktop -f '^{1-9,10}'
+
+#Rotate desktop
+alt + space
+  bspc node @/ --rotate {90,-90}
+
+# Focus/swap windows by direction
+super + {_,shift + }{h,j,k,l}
+  bspc node --{focus,swap} {west,south,north,east}
+
+# Flip layout vertically/horizontally
+super + {_,shift + }a
+  bspc node @/ --flip {vertical,horizontal}
+
+# Expand tiled space
+super + ctrl + {0,0,k,l}
+  bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}
+
+# Contract tiled space
+super + ctrl + {h,j,0,0}
+  bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}
+
+# Increase/decrease window gap on focused desktop
+super + bracket{left,right}
+  bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
+
+# TODO: fix uncomefortable combo
+# Move floating window
+super + alt + {_,shift + }{h,j,k,l}
+  ~/.config/bspwm/scripts/move-window {_,edge-}{west,south,north,east}
+
+# set the window state
+super + space
+  bspc node -t {tiled,floating}
+
+# Focus parent/brother/first/second for preselection
+super + ctrl + {e,r,t,y}
+  bspc node --focus @{parent,brother,first,second}
+
+# Preselect the splitting area for next window on leaf/parent
+super + ctrl + {u,i,o,p}
+  bspc node --presel-dir \~{west,south,north,east}
+
+# Define splitting ratio for next window on leaf/parent
+super + ctrl + {_,shift +}{1-9}
+  bspc node {_,@/} --presel-ratio 0.{1-9}
+
+# Cancel preselection
+super + ctrl + space
+  bspc node --presel-dir cancel
+

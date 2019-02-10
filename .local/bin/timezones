@@ -1,0 +1,17 @@
+#!/bin/bash
+date_format='%Y-%m-%d'
+
+#intentionally disable date
+date_format=''
+
+time_format='%H:%M'
+whitespace=''
+padding='     '
+
+KST=KST:$(TZ="Asia/Seoul"          date "+$date_format$whitespace$time_format")
+IST=IST:$(TZ="Asia/Kolkata"        date "+$date_format$whitespace$time_format")
+EET=EET:$(TZ="Europe/Kiev"         date "+$date_format$whitespace$time_format")
+UTC=UTC:$(TZ="Europe/Dublin"       date "+$date_format$whitespace$time_format")
+PST=PST:$(TZ="America/Los_Angeles" date "+$date_format$whitespace$time_format")
+
+echo -e "$IST$padding$EET$padding$UTC$padding$PST"

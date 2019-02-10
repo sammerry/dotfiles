@@ -1,0 +1,94 @@
+ffscreencast
+chrony
+evince
+kity
+qutebrowser
+figlet
+galculator
+xsel
+scrot
+light
+slock
+gromit-mpx
+xdg-utils
+arandr
+
+# Calendar
+# pip install
+gcalcli
+
+# Reader/PDF
+zathura
+zathura-cb
+zathura-pdf-mupdf
+
+# Password
+# note: pip install tldextract
+# for lastpass in qutebrowser
+lastpass-cli
+pinentry-tty
+tldextract
+
+# Security
+wireguard
+ufw
+
+# Development
+python3
+python3-pip
+python2
+python2-pip
+neovim
+kubectl
+kubernetes-helm
+bind-utils
+docker
+curl
+netcat
+git
+xe
+go
+rust
+strace
+tcpdump
+
+# XDG User Dirs
+elogind
+xdg-user-dirs
+
+# Battery
+# upower
+# acpi
+powertop
+laptop-mode
+
+# Music
+mpc
+ncmpcpp
+alsa-tools
+alsa-utils
+alsaequal
+sox
+
+# Window and Compositing
+xorg-minimal
+xorg-fonts
+wlroots
+bspwm
+
+# GTK 3 Theme
+wpgtk
+lx
+hsetroot
+font-firacode
+font-iosevka
+font-inconsolata-otf
+font-tamsyn
+font-awesome5
+breeze-obsidian-cursor-theme
+awoken-icons-dark
+paper-icon-theme
+dunst
+redshift
+rofi
+

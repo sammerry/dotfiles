@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+# From: https://ncoop.github.io/2016/07/31/sending-notifications-with-ncmpcpp
+
+# Get fields from mpc, split by tabs.
+IFS=$'\t' read album artist title \
+  <<< "$(mpc --format="%album%\t%artist%\t%title%")"
+
+notify-send --urgency=low --expire-time=5000 --app-name=ncmpcpp \
+  --icon=spotify "$album" "$artist\n$title"

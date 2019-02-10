@@ -1,0 +1,74 @@
+#!/bin/sh
+# credit for the scripts
+# https://github.com/Chrysostomus/bspwm-scripts/tree/master/bin
+#
+
+$gap=10
+
+#Color template
+. /home/lappy/.cache/wal/bspwm
+
+# Padding
+bspc config border_width           2
+bspc config window_gap             -$gap
+bspc config left_padding           -$gap
+bspc config right_padding          -$gap
+bspc config bottom_padding         -$gap
+
+# Monocle
+bspc config single_monocle         false
+bspc config borderless_monocle     true
+bspc config gapless_monocle        true
+
+# Focus And Split
+bspc config split_ratio            0.60
+bspc config ignore_ewmh_focus      true
+bspc config ignore_ewmh_fullscreen all
+bspc config click_to_focus         any
+bspc config swallow_first_click    true
+
+# Monitor
+bspc monitor -d I II III IV V VI
+bspc config remove_disabled_monitors true
+bspc config remove_unplugged_monitors true
+
+#Desktop Overrides
+d2=$(bspc query -D -d '^2')
+bspc config -d $d2 window_gap      300
+
+#Reset rules
+bspc rule -r *:*
+
+#Fullscreen applications
+bspc rule -a inkscape state=fullscreen
+bspc rule -a Spotify state=fullscreen
+bspc rule -a Vlc state=fullscreen
+bspc rule -a Gnome-disks state=fullscreen
+bspc rule -a VirtualBox Manager state=fullscreen
+bspc rule -a VirtualBox Machine state=fullscreen
+
+#Floating applications
+bspc rule -a mpv state=floating sticky=on
+bspc rule -a feh state=floating
+bspc rule -a Sxiv state=floating
+bspc rule -a Nitrogen state=floating
+bspc rule -a Arandr state=floating
+bspc rule -a Galculator state=floating
+bspc rule -a Font-manager state=floating
+bspc rule -a Oblogout state=floating
+bspc rule -a Pulseaudio-equalizer.py state=floating
+bspc rule -a Gpick state=floating
+bspc rule -a vlc state=floating
+bspc rule -a URxvt:Wicd state=floating
+
+#Tiled applicationsO
+bspc rule -a Xfce4-settings-manager state=tiled
+
+#Applications on specific workspaces
+bspc rule -a URxvt:Irssi desktop='^2'
+bspc rule -a URxvt:Ncmpcpp desktop='^2'
+bspc rule -a URxvt:Vis desktop='^2'
+
+#Auto start
+$HOME/.config/bspwm/autostart.sh
+
