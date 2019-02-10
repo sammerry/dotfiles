@@ -1,0 +1,11 @@
+set adjust-window "width"
+set adjust-open "width"
+set selection-clipboard clipboard
+set page-cache-size 50
+set guioptions ""
+set database null
+set page-padding 15
+
+" Toggle mode
+map D toggle_page_mode
+

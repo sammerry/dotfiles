@@ -1,0 +1,55 @@
+[global]
+    alignment = left
+    markup = full
+    plain_text = no
+    bounce_freq = 0
+    browser = /usr/bin/chromium
+    follow = keyboard
+    font = Open Sans, Taskbar 10
+    format = "<b>%s</b>\n%b %p"
+    geometry = "300x5-20+45"
+    hide_duplicate_count = true
+    history_length = 20
+    horizontal_padding = 20
+    idle_threshold = 120
+    ignore_newline = no
+    indicate_hidden = yes
+    line_height = 0
+    monitor = 0
+    padding = 25
+    separator_color = "#000000"
+    separator_height = 3
+    show_age_threshold = -1
+    show_indicators = yes
+    sort = yes
+    startup_notification = false
+    sticky_history = yes
+    word_wrap = yes
+
+    # Icon
+    icon_position = left
+    max_icon_size = 64
+    icon_folders = /usr/share/icons/Paper/512x512@2x/apps:/usr/share/icons/Paper/512x512@2x/status
+
+[frame]
+    width = 6
+
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+grave
+    context = ctrl+shift+period
+
+[urgency_low]
+    timeout = 1
+    icon = /usr/share/icons/Adwaita/256x256/status/dialog-information.png
+
+[urgency_normal]
+    timeout = 7
+    icon = /usr/share/icons/Adwaita/256x256/status/dialog-information.png
+
+[urgency_critical]
+    timeout = 9
+    icon = /usr/share/icons/Adwaita/256x256/status/dialog-error.png
+
+# vim: ft=cfg

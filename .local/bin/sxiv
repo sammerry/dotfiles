@@ -1,0 +1,3 @@
+#!/bin/bash
+# do not interrupt the terminal when viewing images
+nohup /usr/bin/sxiv $@ 2>&1> /dev/null &

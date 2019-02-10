@@ -1,0 +1,71 @@
+! ------------------------------------------------------------------------------
+! Reload with xrdb -merge ~/.Xresources
+! ------------------------------------------------------------------------------
+
+! general settings
+URxvt*saveline:             20000
+URxvt*termName:             xterm-256color
+URxvt*urgentOnBell:         false
+URxvt*iso24755:             false
+URxvt*iso24755_52:          false
+URxvt*iso14755:             false
+URxvt*iso14755_52:          false
+URxvt*meta8:                false
+URxvt*metaSendsEscape:      true
+URxvt*iconFile:             /usr/share/icons/Sardi-Mono/scalable/apps/terminal.svg
+URxvt*shading:              5
+
+! appearance
+URxvt*depth:                32
+URxvt*scrollBar:            false
+URxvt*scrollTtyOutput:      false
+URxvt*scrollWithBuffer:     true
+URxvt*scrollTtyKeypress:    true
+URxvt*internalBorder:       10
+URxvt*externalBorder:       0
+URxvt*visualBell:           false
+
+! fonts
+Xft.autohint:               1
+Xft.lcdfilter:              lcddefault
+Xft.hintstyle:              hintfull
+Xft.hinting:                1
+Xft.antialias:              1
+Xft.dpi:                    144
+Xft.rgba:                   rgb
+URxvt*letterSpace:          0
+URxvt*font:                 xft:FuraCode Nerd Font Mono:style=Light:size=12:antialias=true:hinting=full
+
+! perl extensions
+URxvt*perl-ext-common:      default,clipboard,url-select,keyboard-select
+
+URxvt*keysym.M-k:           perl:font-size:increase
+URxvt*keysym.M-l:           perl:font-size:decrease
+URxvt*font-size.step:       4
+
+! url selection and launching
+URxvt*keysym.M-u:           perl:url-select:select_next
+URxvt*underlineURLs:        true
+URxvt*url-select.autocopy:  true
+URxvt*url-select.launcher:  /home/lappy/.bin/bashopen
+URxvt*matcher.button:       1
+
+! clipboard and selection
+URxvt.clipboard.copycmd:    xsel -ib
+URxvt.clipboard.pastecmd:   xsel -ob
+URxvt*keysym.M-c:           perl:clipboard:copy
+URxvt*keysym.m-v:           perl:clipboard:paste
+URxvt*keysym.M-C-v:         perl:clipboard:paste_escaped
+URxvt*keysym.M-Escape:      perl:keyboard-select:activate
+URxvt*keysym.M-s:           perl:keyboard-select:search
+URxvt*geometry:             90x30
+
+! tabbed
+URxvt*tabbed.tabbar-fg:     4
+URxvt*tabbed.tabbar-bg:     24
+URxvt*tabbed.tab-fg:        15
+URxvt*tabbed.tab-bg:        4
+URxvt*buffered:             false
+URxvt*keysym.Control-Shift-C: perl:clipboard:copy
+URxvt*keysym.Control-Shift-V: perl:clipboard:paste
+

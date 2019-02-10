@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+cachepath=${CACHEPATH:-$HOME/.cache/bashopen}
+mkdir -p $cachepath
+
+mime=$(curl -I $@ -i --silent | awk 'tolower($0) ~ /^content-type:/ { MIME = $2 } END { printf("%s\n", MIME) }')
+
+if [[ $@ == *"youtu.be"* ]]; then
+  vlc $@
+else
+  echo $mime | grep '\(image\|pdf\|video\)' \
+    && wget $@ -q -O $cachepath/tmpfile && xdg-open $cachepath/tmpfile \
+    || xdg-open $@
+fi
+

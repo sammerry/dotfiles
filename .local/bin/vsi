@@ -1,0 +1,160 @@
+#!/usr/bin/env sh
+# from https://raw.githubusercontent.com/Anachron/void/master/bin/vsi
+
+c=0
+
+newHead() {
+  if test "${1}" = "0"; then
+    printf '  ┌───────────────────────────\n'
+    return
+  elif test "${1}" = "1"; then
+    if test "${c}" -eq 1; then
+      printf '   ──────────────────────────┘\n'
+    else
+      printf '  └───────────────────────────\n'
+    fi
+    return
+  fi
+
+  if test "${c}" -eq 0; then
+    c=1
+    printf '  └── %-3s ───────────────────┐\n' "${1}"
+  elif test "${c}" -eq 1; then
+    c=0
+    printf '  ┌── %-3s ───────────────────┘\n' "${1}"
+  elif test "${c}" -eq -1; then
+    c=0
+  fi
+}
+
+newText() {
+  test "$#" -lt 2 && return
+  t=$(printf '%s' "${1}" | cut -c 1-4)
+  v=$(printf '%s' "${2}" | cut -c 1-19)
+  shift 2
+  if test "${c}" -eq 1; then
+    m=$(echo "23 - ${#t}" | bc -s)
+    printf '    \033[0;33m%s\033[0m: %-'"${m}"'s│\n' "${t}" "${v}"
+  else
+    printf '  │ \033[0;33m%s\033[0m: %-'"${m}"'s\n' "${t}" "${v}"
+  fi
+}
+
+if test "$#" -eq 0; then
+  cat << EOL
+  $(basename "${0}"): Void System Information
+
+  -b : Backup
+  -d : Default
+  -f : Fonts
+  -g : Geodata
+  -h : Identity
+  -l : LVM Volumes
+  -o : Operating System
+  -r : ROM Media
+  -s : System Info
+  -w : Window Manager
+EOL
+  exit
+fi
+
+if test "${1}" = '-d'; then
+  vsi -s -r -l -o 
+  exit
+fi
+
+newHead 0
+
+while test "$#" -gt 0; do
+  case "${1}" in
+    -s)
+      ram=$(free -m | awk 'NR==2{printf "%s/%s\n", $3,$2 }')
+      rom=$(df -h /data | tail -n 1 | cut -d ' ' -f 3 | tr -d 'G')
+      cpu=$(grep 'model name' /proc/cpuinfo | head -n 1 | awk -F ':' '{print $2}' | xargs)
+      #cpu='Intel i7-7500U CPU @ 2.70GHz'
+      cpu_num=$(grep 'model name' /proc/cpuinfo | wc -l)
+      cpu_brand=$(printf "${cpu}" | cut -d ' ' -f 1 | cut -d '(' -f 1 | xargs)
+      cpu_freq=$(printf "${cpu}" | cut -d '@' -f 2 | xargs)
+      gpu='AMD Radeon R7 M445'
+      #gpu=$(lspci | grep 'Display' | awk -F '.' '{print $3}' | xargs)
+      newHead 'sys'
+      newText 'rom' "${rom} GB"
+      newText 'ram' "${ram} MB"
+      newText 'cpu' "${cpu_brand} ${cpu_freq} x${cpu_num}"
+      newText 'gpu' "${gpu}"
+      ;;
+    -o)
+      newHead 'os'
+      os=$(. /etc/os-release; echo "${NAME}")
+      knl=$(uname -r)
+      arc=$(uname -m)
+      pkg=$(xbps-query -l | wc -l)
+      man=$(xbps-query -m | wc -l)
+      libc=$(ldd --version | head -n 1 | cut -d '(' -f 2- | tr -d '()')
+      uptm=$(uptime | awk -F'( |,|:)+' '{print $6"d,",$8"h and",$9"m"}')
+      newText 'type' "${os}"
+      newText 'krnl' "${knl}"
+      newText 'arch' "${arc}"
+      newText 'host' "${HOSTNAME}"
+      newText 'pkgc' "${pkg} (${man}*)"
+      newText 'libc' "${libc}"
+      newText 'uptm' "${uptm}"
+      ;;
+    -r)
+      newHead 'rom'
+      for blkDev in /boot /data; do
+        blkDat=$(df -h "${blkDev}" | tail -n 1 | awk -F ' ' '{print $3"/"$2" ("$5")"}')
+        newText "$(basename ${blkDev})" "${blkDat}"
+      done
+      ;;
+    -l)
+      newHead 'lvm'
+      for lvmDev in /dev/lvm/*; do
+        lvmDat=$(df -h "${lvmDev}" | tail -n 1 | awk -F ' ' '{print $3"/"$2" ("$5")"}')
+        newText "$(basename ${lvmDev})" "${lvmDat}"
+      done
+      ;;
+    -g)
+      pip=$(curl -s "https://api.ipify.org")
+      loc=$(curl -s "https://ipinfo.io/${ip}" | jq '.loc' | tr ',' '|' | tr -d '"')
+      newHead 'geo'
+      newText 'pip' "${pip}"
+      newText 'loc' "${loc}"
+      ;;
+    -h)
+      ssh=$(ssh-keygen -lv -f ~/.ssh/id_rsa | tail -n +2)
+      newHead 'ssh'
+      if test "${c}" -eq 1; then
+        printf '%s\n' "${ssh}" | sed 's|^|       |g; s/$/   │/g'
+      else
+        printf '%s\n' "${ssh}" | sed 's/^/  │    /g;'
+      fi
+      ;;
+    -b)
+      newHead 'bak'
+      mntDev=$(find /mnt/dev -maxdepth 2 -type d -name 'bak')
+      if test -z "${mntDev}"; then
+        newText 'all' 'not mounted'
+      else
+        newText 'usr' $(stat -c %y "${mntDev}/user/${USER}")
+        newText 'med' $(stat -c %y "${mntDev}/media/${USER}")
+        newText 'sys' $(stat -c %y "${mntDev}/system/${HOSTNAME}")
+      fi
+      ;;
+    -f)
+      newHead 'fnt'
+      newText 'norm' "${fontName}"
+      newText 'mono' "${monoName}"
+      newText 'symb' "${symbName}"
+      newText 'size' "${fontSize}"
+      ;;
+    -w)
+      newHead 'wm'
+      newText 'name' "${STP}"
+      newText 'wall' "$(basename $(cat /tmp/wallpaper) | cut -d '.' -f 1)"
+      ;;
+  esac
+  shift
+done
+
+newHead 1
