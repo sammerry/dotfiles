@@ -39,11 +39,12 @@ alias mysql-web='MYSQL_HOME=$HOME/mysql.cnf ssh -nNL \
 # Dockerized
 ################################################################################
 
-# Facebook Torch ML
-alias jupyter='docker run --restart=always \
+# Zipline Quant Work
+alias ziplined='docker run --rm \
+  --name zipline \
   -p 8888:8888 \
-  -v $HOME/workspace/numerical-linear-algebra:/home/jovyan \
-  jupyter/scipy-notebook'
+  -v $HOME/workspace/quantnb/notebooks/:/home/jovyan/ \
+  ziplinetest'
 
 # Kafkacat for dealing kafka streams
 alias kafkacat='docker run --net host --rm -i \
@@ -74,12 +75,13 @@ alias psql='docker run --net host -e PGPASSWORD=pass --rm -it postgres:9.3-alpin
 
 # ZNC irc bouncer, you'll have to generate a config. Use the steps from the readme
 # https://github.com/Stanback/alpine-bitlbee-znc/
-alias znc-config='docker run -it --rm \
+alias znc-config='docker run -it \
+  --rm --name znc-config \
   -v $HOME/Data/znc:/znc-data \
   znc:1.7.2-slim --makeconf'
 
 alias znc='docker run -d \
-  --name=znc --restart=always \
+  --rm --name=znc \
   -v /etc/localtime:/etc/localtime:ro \
   -v $HOME/Data/znc:/znc-data \
   --link=bitlbee:bitlbee \
@@ -88,11 +90,9 @@ alias znc='docker run -d \
 
 # Bitlbee Messenger, Slack, Hangouts to IRC
 # https://github.com/Stanback/alpine-bitlbee-znc
-alias bitlbee='docker run -d --name bitlbee \
-  --restart=always \
-  -v /etc/localtime:/etc/localtime:ro \
+alias bitlbee='docker run -d \
+  --rm --name bitlbee \
   -v $HOME/Data/bitlbee:/var/lib/bitlbee \
-  --user $(id -u):$(id -g) \
   sammerry/bitlbee'
 
 ################################################################################
@@ -107,5 +107,5 @@ alias mopidy='docker run -d --rm \
   -v $HOME/.config/mopidy:/var/lib/mopidy/.config/mopidy/ \
   -v /tmp/mopidy:/tmp/mopidy \
   -p 6600:6600/tcp -p 6680:6680/tcp -p 5555:5555/udp \
-  mopidy'
+  wernight/mopidy'
 

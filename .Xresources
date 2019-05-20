@@ -28,13 +28,13 @@ URxvt*visualBell:           false
 ! fonts
 Xft.autohint:               1
 Xft.lcdfilter:              lcddefault
-Xft.hintstyle:              hintfull
+Xft.hintstyle:              hintnone
 Xft.hinting:                1
 Xft.antialias:              1
-Xft.dpi:                    144
+Xft.dpi:                    94
 Xft.rgba:                   rgb
 URxvt*letterSpace:          0
-URxvt*font:                 xft:FuraCode Nerd Font Mono:style=Light:size=12:antialias=true:hinting=full
+URxvt*font:                 xft:FuraCode Nerd Font Mono:style=Light:size=9
 
 ! perl extensions
 URxvt*perl-ext-common:      default,clipboard,url-select,keyboard-select

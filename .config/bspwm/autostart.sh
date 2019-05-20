@@ -1,5 +1,7 @@
 #! /bin/bash
 
+$HOME/.screenlayout/purism.sh
+
 # Refresh user specific crontab
 crontab $HOME/.config/crontab/crontab
 

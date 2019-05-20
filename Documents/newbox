@@ -55,6 +55,7 @@ echo voidvm > /etc/hostname
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 echo "en_US.UTF-8 UTF-8" >> /etc/default/libc-locales
 xbps-reconfigure -f glibc-locales
+ln -s /usr/share/zoneinfo/<PLACE>/<CITY> /etc/localtime
 
 # Add the encrypted drives to fstab
 wget https://raw.githubusercontent.com/glacion/genfstab/master/genfstab -o /usr/bin/genfstab

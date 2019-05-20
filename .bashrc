@@ -59,13 +59,18 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Fix Java Applications
+# https://wiki.archlinux.org/index.php/Java#Non-reparenting_window_managers_.2F_Grey_window_.2F_Programs_not_drawing_properly
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # remove duplicates from history
 export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=1000
 export HISTFILESIZE=2000
 
 #shopt
-shopt -s checkwinsize     #check window size after command
+shopt -s checkwinsize     # check window size after command
+shopt -s checkjobs        # check running jobs before closing shell
 shopt -s autocd           # change to named directory
 shopt -s cdspell          # autocorrects cd misspellings
 shopt -s cmdhist          # save multi-line commands in history as single line
@@ -73,6 +78,8 @@ shopt -s dotglob          # include hidden files in file expansion
 shopt -s histappend       # do not overwrite history
 shopt -s expand_aliases   # expand aliases
 shopt -s globstar         # deep match on **
+shopt -s lithist          # save multi line with newlines in history
+shopt -s no_empty_cmd_completion
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
@@ -160,8 +167,8 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 # Print neofetch output
 # neofetch
 DATE=`date '+%A'`
-ln -f -s $HOME/Todo/todo.$DATE $HOME/todo
-cat $HOME/todo
+# ln -f -s $HOME/Todo/todo.$DATE $HOME/todo
+# cat $HOME/todo
 
 # Ensure local bin takes presidence
 export PATH="$HOME/.local/bin:$PATH"

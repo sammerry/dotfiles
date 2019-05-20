@@ -1,0 +1,11 @@
+include /home/lappy/.cache/wal/colors-sway
+
+# class                 border  backgr.      text        indicator child_border
+client.focused           $color0 $background $foreground #be5046   $color5
+client.focused_inactive  $color1 $background $foreground #5c6370   $color6
+client.unfocused         $color2 $background $foreground #5c6370   $color7
+client.urgent            $color3 $background $foreground #cb6077   $color8
+client.placeholder       $color4 $background $foreground #000000   $color9
+
+include conf.d/*
+

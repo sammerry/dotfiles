@@ -54,6 +54,7 @@ tcpdump
 
 # XDG User Dirs
 elogind
+dbus-elogind
 xdg-user-dirs
 
 # Battery
@@ -68,6 +69,8 @@ ncmpcpp
 alsa-tools
 alsa-utils
 alsaequal
+alsa-plugins
+alsa-plugins-ffmpeg
 sox
 
 # Window and Compositing
