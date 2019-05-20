@@ -24,7 +24,7 @@ git update-index --no-assume-unchanged <tracked file>
 
 ## Void Build a custom live usb
 
-The broadcom-wl-dkms drivers aren't included in the base voidlive image. Clone the void_live repo and run the following command after updating to point at your usb drive.
+The broadcom-wl-dkms and cryptsetup packages aren't included in the base voidlive image. Clone the void_live repo and run the following command after updating to point at your usb drive.
 
 ```
 sudo ./mklive.sh  -r "https://alpha.de.repo.voidlinux.org/current/nonfree" -p "dialog broadcom-wl-dkms cryptsetup lvm2 void-repo-nonfree curl netcat xe tcpdump strace bind-utils xfsprogs git wget"

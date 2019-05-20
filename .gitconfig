@@ -1,0 +1,182 @@
+# vim: set tf=dosini
+[apply]
+  # detect whitespace errors when applying a patch
+  whitespace = warn
+
+[commit]
+  template = ~/.gitmessage
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "status"]
+  added = green
+  changed = yellow
+  untracked = blue
+
+[alias]
+  # List tracked files
+  ls = ls-tree --full-tree -r --name-only HEAD
+
+[core]
+  # Global `.gitattributes`
+  attributesfile = ~/.gitattributes
+
+  # Default editor for commit messages and other inputs
+  # Even when EDITOR is set to something else
+  editor=vim
+
+  # Global `.gitignore`
+  excludesfile = ~/.gitignore
+
+  # Make `git rebase` safer on OS X
+  # More info: http://www.git-tower.com/blog/make-git-rebase-safe-on-osx
+  trustctime = false
+
+
+  # Prevent showing files whose names contain non-ASCII symbols as unversioned.
+  # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+  precomposeunicode = false
+
+  # Speed up commands involving untracked files such as `git status`.
+  # https://git-scm.com/docs/git-update-index#_untracked_cache
+  untrackedCache = true
+
+  # Treat
+  #  - spaces before tabs,
+  #  - all kinds of trailing whitespace
+  # as an error.
+  whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+  # Make `git rebase` safer on macOS
+  # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+  trustctime = false
+
+  # https://stackoverflow.com/questions/18257622/why-is-git-core-preloadindex-default-value-false/18259086
+  preloadindex = true
+
+  # Enable the filesystem cache (for git bash | windows)
+  fscache = true
+
+[branch]
+  # auto rebase on pull
+  autosetuprebase = always
+
+[diff]
+  # Use more time to create better diffs.
+  # E.g. matching opening/closing braces from neighbour functions.
+  # See "`git help diff` --patience" and "`git help merge` recursive".
+  algorithm = patience
+
+  # (git 2.9+) Set this option to `true` to enable an experimental heuristic that
+  # shifts the hunk boundary in an attempt to make the resulting
+  # patch easier to read.
+  compactionHeuristic = true
+
+  color = auto
+
+  # Tells git to detect renames. If set to any boolean value,
+  # it will enable basic rename detection. If set to "copies" or "copy",
+  # it will detect copies, as well.
+  renames = copies
+
+  # Default to opendiff for visualising diffs.
+  # opendiff opens FileMerge
+  # Override with --tool=<tool> in difftool
+  # See`git help difftool`
+  # If `opendiff` is not in your $PATH, override with difftool.opendiff.path
+  # See`git help config` and search for "diff.tool"
+  #tool = opendiff
+  tool = vim
+
+[difftool]
+  prompt = false
+  trustExitCode = true
+
+[difftool "vim"]
+  cmd = vim -d $LOCAL $REMOTE
+
+[status]
+  color = auto
+
+[merge]
+  #tool = opendiff
+  tool = fugitive
+
+  # Always show a diffstat at the end of a merge
+  stat = true
+
+  # Git has an option to display merge conflicts in diff3 format (by default it only displays the two files to be merged).
+  conflictstyle = diff3
+
+  # Include summaries of merged commits in newly created merge commit messages
+  log = true
+
+[mergetool "fugitive"]
+  cmd = 'vim -f -c "Gdiff" "$MERGED"'
+
+[diff "bin"]
+  # Use `hexdump` to diff binary files
+  textconv = hex -v -C
+
+[help]
+  # Automatically correct and execute mistyped commands
+  #autocorrect = 1
+
+  autocorrect = 10
+  # e.g.: $ git lgo
+  # WARNING: You called a Git command named 'lgo', which does not exist.
+  # Continuing under the assumption that you meant 'log'
+  # in 1.0 seconds automatically...
+
+[push]
+  # See `git help config` and search for "push.default"
+  # for more information on different options of the below setting.
+  # Setting to Git 2.0 default to surpress warning message
+  # If you use branches with different remote name, use "upstream"
+
+  # Push only the current branch
+  default = simple
+
+  # Push all branches
+  # default = matching
+
+  # Make `git push` push relevant annotated tags when pushing branches out.
+  followTags = true
+
+# URL shorthands
+#
+# See `git help config` and search for "url.<base>"
+#
+# gh: is a shorthand for git@github.com
+[url "git@github.com:"]
+  insteadOf = "gh:"
+  pushInsteadOf = "github:"
+  pushInsteadOf = "git://github.com/"
+
+# github: is a shorthand for git://github.com/
+[url "git://github.com/"]
+  insteadOf = "github:"
+
+# gist: is a shofthand for git://gist.github.com/
+[url "git://gist.github.com/"]
+  insteadOf = "gist:"
+
+[log]
+  decorate = short
+
+[rebase]
+  # Use --autosquash by default. It's not like one would write !fixup message by accident.
+  autoSquash = true
+
+  # Use --autostash when running git pull --rebase and when rebasing interactively
+  autoStash = true
+
+[hub]
+  protocol = https
+
+[init]
+  templatedir = ~/.git-templates
+

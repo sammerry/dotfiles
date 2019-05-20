@@ -13,8 +13,8 @@
 cfdisk
 
 # Create encrypted disks and format
-cryptsetup luksFormat /dev/sda2 crypt-pool
-cryptsetup luksOpenn /dev/sda2
+cryptsetup luksFormat /dev/sda2
+cryptsetup luksOpen /dev/sda2 crypt-pool
 
 vgcreate pool /dev/mapper/crypt-pool
 lvcreate --name root -L 50G pool
@@ -69,6 +69,7 @@ END
 
 # Makesure grub knows about encrypted disks
 cat >> /etc/defaults/grub <<END
+
 GRUB_CMDLINE_LINUX_DEFAULT="loglevel=4 rd.auto=1 cryptdevice=/dev/sda2:crypt-pool root=/dev/mapper/pool-root"
 GRUB_ENABLE_CRYPTODISK=y
 END
