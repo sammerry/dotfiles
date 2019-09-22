@@ -1,10 +1,15 @@
 ﻿###
-###  vlc 3.0.6
+###  vlc 3.0.7.1
 ###
 
 ###
 ### lines beginning with a '#' character are comments
 ###
+
+[ncurses] # Ncurses interface
+
+# Filebrowser starting point (string)
+#browse-dir=
 
 [qt] # Qt interface
 
@@ -86,11 +91,6 @@ qt-privacy-ask=0
 # When to raise the interface (integer)
 #qt-auto-raise=1
 
-[ncurses] # Ncurses interface
-
-# Filebrowser starting point (string)
-#browse-dir=
-
 [skins2] # Skinnable Interface
 
 # Skin to use (string)
@@ -108,37 +108,33 @@ qt-privacy-ask=0
 # Display video in a skinned window if any (boolean)
 #skinned-video=1
 
-[live555] # RTP/RTSP/SDP demuxer (using Live555)
+[vdr] # VDR recordings
 
-# Use RTP over RTSP (TCP) (boolean)
-#rtsp-tcp=0
+# Chapter offset in ms (integer)
+#vdr-chapter-offset=0
 
-# Client port (integer)
-#rtp-client-port=-1
+# Frame rate (float)
+#vdr-fps=25.000000
 
-# Force multicast RTP via RTSP (boolean)
-#rtsp-mcast=0
+[xcb_screen] # Screen capture (with X11/XCB)
 
-# Tunnel RTSP and RTP over HTTP (boolean)
-#rtsp-http=0
+# Frame rate (float)
+#screen-fps=2.000000
 
-# HTTP tunnel port (integer)
-#rtsp-http-port=80
+# Region left column (integer)
+#screen-left=0
 
-# Kasenna RTSP dialect (boolean)
-#rtsp-kasenna=0
+# Region top row (integer)
+#screen-top=0
 
-# WMServer RTSP dialect (boolean)
-#rtsp-wmserver=0
+# Capture region width (integer)
+#screen-width=0
 
-# Username (string)
-#rtsp-user=
+# Capture region height (integer)
+#screen-height=0
 
-# Password (string)
-#rtsp-pwd=
-
-# RTSP frame buffer size (integer)
-#rtsp-frame-buffer-size=250000
+# Follow the mouse (boolean)
+#screen-follow-mouse=0
 
 [access_alsa] # ALSA audio capture
 
@@ -421,6 +417,38 @@ qt-privacy-ask=0
 # Audio configuration (string)
 #linsys-hdsdi-audio=0=1,1
 
+[live555] # RTP/RTSP/SDP demuxer (using Live555)
+
+# Use RTP over RTSP (TCP) (boolean)
+#rtsp-tcp=0
+
+# Client port (integer)
+#rtp-client-port=-1
+
+# Force multicast RTP via RTSP (boolean)
+#rtsp-mcast=0
+
+# Tunnel RTSP and RTP over HTTP (boolean)
+#rtsp-http=0
+
+# HTTP tunnel port (integer)
+#rtsp-http-port=80
+
+# Kasenna RTSP dialect (boolean)
+#rtsp-kasenna=0
+
+# WMServer RTSP dialect (boolean)
+#rtsp-wmserver=0
+
+# Username (string)
+#rtsp-user=
+
+# Password (string)
+#rtsp-pwd=
+
+# RTSP frame buffer size (integer)
+#rtsp-frame-buffer-size=250000
+
 [rtp] # Real-Time Protocol (RTP) input
 
 # RTCP (local) port (integer)
@@ -627,34 +655,6 @@ qt-privacy-ask=0
 # v4l2 driver controls (string)
 #v4l2-set-ctrls=
 
-[vdr] # VDR recordings
-
-# Chapter offset in ms (integer)
-#vdr-chapter-offset=0
-
-# Frame rate (float)
-#vdr-fps=25.000000
-
-[xcb_screen] # Screen capture (with X11/XCB)
-
-# Frame rate (float)
-#screen-fps=2.000000
-
-# Region left column (integer)
-#screen-left=0
-
-# Region top row (integer)
-#screen-top=0
-
-# Capture region width (integer)
-#screen-width=0
-
-# Capture region height (integer)
-#screen-height=0
-
-# Follow the mouse (boolean)
-#screen-follow-mouse=0
-
 [file] # File stream output
 
 # Overwrite existing file (boolean)
@@ -731,118 +731,6 @@ qt-privacy-ask=0
 
 # Group packets (integer)
 #sout-udp-group=1
-
-[audiobargraph_a] # Audio part of the BarGraph function
-
-# Defines if BarGraph information should be sent (integer)
-#audiobargraph_a-bargraph=1
-
-# Sends the barGraph information every n audio packets (integer)
-#audiobargraph_a-bargraph_repetition=4
-
-# Defines if silence alarm information should be sent (integer)
-#audiobargraph_a-silence=1
-
-# Time window to use in ms (integer)
-#audiobargraph_a-time_window=5000
-
-# Minimum Audio level to raise the alarm (float)
-#audiobargraph_a-alarm_threshold=0.020000
-
-# Time between two alarm messages in ms (integer)
-#audiobargraph_a-repetition_time=2000
-
-[chorus_flanger] # Sound Delay
-
-# Delay time (float)
-#delay-time=20.000000
-
-# Sweep Depth (float)
-#sweep-depth=6.000000
-
-# Sweep Rate (float)
-#sweep-rate=6.000000
-
-# Feedback gain (float)
-#feedback-gain=0.500000
-
-# Wet mix (float)
-#wet-mix=0.400000
-
-# Dry Mix (float)
-#dry-mix=0.400000
-
-[compressor] # Dynamic range compressor
-
-# RMS/peak (float)
-#compressor-rms-peak=0.200000
-
-# Attack time (float)
-#compressor-attack=25.000000
-
-# Release time (float)
-#compressor-release=100.000000
-
-# Threshold level (float)
-#compressor-threshold=-11.000000
-
-# Ratio (float)
-#compressor-ratio=4.000000
-
-# Knee radius (float)
-#compressor-knee=5.000000
-
-# Makeup gain (float)
-#compressor-makeup-gain=7.000000
-
-[equalizer] # Equalizer with 10 bands
-
-# Equalizer preset (string)
-#equalizer-preset=flat
-
-# Bands gain (string)
-#equalizer-bands=
-
-# Two pass (boolean)
-#equalizer-2pass=0
-
-# Use VLC frequency bands (boolean)
-#equalizer-vlcfreqs=1
-
-# Global gain (float)
-#equalizer-preamp=12.000000
-
-[gain] # Gain control filter
-
-# Gain multiplier (float)
-#gain-value=1.000000
-
-[headphone] # Headphone virtual spatialization effect
-
-# Characteristic dimension (integer)
-#headphone-dim=10
-
-# Compensate delay (boolean)
-#headphone-compensate=0
-
-# No decoding of Dolby Surround (boolean)
-#headphone-dolby=0
-
-[mono] # Stereo to mono downmixer
-
-# Use downmix algorithm (boolean)
-#sout-mono-downmix=1
-
-# Select channel to keep (integer)
-#sout-mono-channel=-1
-
-[normvol] # Volume normalizer
-
-# Number of audio buffers (integer)
-#norm-buff-size=20
-
-# Maximal volume level (float)
-#norm-max-level=2.000000
 
 [param_eq] # Parametric Equalizer
 
@@ -983,6 +871,118 @@ qt-privacy-ask=0
 # Dry mix (float)
 #stereowiden-dry-mix=0.800000
 
+[audiobargraph_a] # Audio part of the BarGraph function
+
+# Defines if BarGraph information should be sent (integer)
+#audiobargraph_a-bargraph=1
+
+# Sends the barGraph information every n audio packets (integer)
+#audiobargraph_a-bargraph_repetition=4
+
+# Defines if silence alarm information should be sent (integer)
+#audiobargraph_a-silence=1
+
+# Time window to use in ms (integer)
+#audiobargraph_a-time_window=5000
+
+# Minimum Audio level to raise the alarm (float)
+#audiobargraph_a-alarm_threshold=0.020000
+
+# Time between two alarm messages in ms (integer)
+#audiobargraph_a-repetition_time=2000
+
+[chorus_flanger] # Sound Delay
+
+# Delay time (float)
+#delay-time=20.000000
+
+# Sweep Depth (float)
+#sweep-depth=6.000000
+
+# Sweep Rate (float)
+#sweep-rate=6.000000
+
+# Feedback gain (float)
+#feedback-gain=0.500000
+
+# Wet mix (float)
+#wet-mix=0.400000
+
+# Dry Mix (float)
+#dry-mix=0.400000
+
+[compressor] # Dynamic range compressor
+
+# RMS/peak (float)
+#compressor-rms-peak=0.200000
+
+# Attack time (float)
+#compressor-attack=25.000000
+
+# Release time (float)
+#compressor-release=100.000000
+
+# Threshold level (float)
+#compressor-threshold=-11.000000
+
+# Ratio (float)
+#compressor-ratio=4.000000
+
+# Knee radius (float)
+#compressor-knee=5.000000
+
+# Makeup gain (float)
+#compressor-makeup-gain=7.000000
+
+[equalizer] # Equalizer with 10 bands
+
+# Equalizer preset (string)
+#equalizer-preset=flat
+
+# Bands gain (string)
+#equalizer-bands=
+
+# Two pass (boolean)
+#equalizer-2pass=0
+
+# Use VLC frequency bands (boolean)
+#equalizer-vlcfreqs=1
+
+# Global gain (float)
+#equalizer-preamp=12.000000
+
+[gain] # Gain control filter
+
+# Gain multiplier (float)
+#gain-value=1.000000
+
+[headphone] # Headphone virtual spatialization effect
+
+# Characteristic dimension (integer)
+#headphone-dim=10
+
+# Compensate delay (boolean)
+#headphone-compensate=0
+
+# No decoding of Dolby Surround (boolean)
+#headphone-dolby=0
+
+[mono] # Stereo to mono downmixer
+
+# Use downmix algorithm (boolean)
+#sout-mono-downmix=1
+
+# Select channel to keep (integer)
+#sout-mono-channel=-1
+
+[normvol] # Volume normalizer
+
+# Number of audio buffers (integer)
+#norm-buff-size=20
+
+# Maximal volume level (float)
+#norm-max-level=2.000000
+
 [afile] # File audio output
 
 # Output file (string)
@@ -1006,7 +1006,7 @@ qt-privacy-ask=0
 #alsa-audio-channels=6
 
 # Software gain (float)
-alsa-gain=4.492125
+alsa-gain=1.953125
 
 [amem] # Audio memory output
 
@@ -1175,6 +1175,9 @@ alsa-gain=4.492125
 # Advanced options (string)
 #sout-avformat-options=
 
+# Reset timestamps (boolean)
+#sout-avformat-reset-ts=0
+
 # Advanced options (string)
 #avio-options=
 
@@ -1301,6 +1304,236 @@ alsa-gain=4.492125
 
 # CBR encoding (boolean)
 #sout-vorbis-cbr=0
+
+[x26410b] # H.264/MPEG-4 Part 10/AVC encoder (x264 10-bit)
+
+# Maximum GOP size (integer)
+#sout-x26410b-keyint=250
+
+# Minimum GOP size (integer)
+#sout-x26410b-min-keyint=25
+
+# Use recovery points to close GOPs (boolean)
+#sout-x26410b-opengop=0
+
+# Enable compatibility hacks for Blu-ray support (boolean)
+#sout-x26410b-bluray-compat=0
+
+# Extra I-frames aggressivity (integer)
+#sout-x26410b-scenecut=40
+
+# B-frames between I and P (integer)
+#sout-x26410b-bframes=3
+
+# Adaptive B-frame decision (integer)
+#sout-x26410b-b-adapt=1
+
+# Influence (bias) B-frames usage (integer)
+#sout-x26410b-b-bias=0
+
+# Keep some B-frames as references (string)
+#sout-x26410b-bpyramid=normal
+
+# CABAC (boolean)
+#sout-x26410b-cabac=1
+
+# Use fullrange instead of TV colorrange (boolean)
+#sout-x26410b-fullrange=0
+
+# Number of reference frames (integer)
+#sout-x26410b-ref=3
+
+# Skip loop filter (boolean)
+#sout-x26410b-nf=0
+
+# Loop filter AlphaC0 and Beta parameters alpha:beta (string)
+#sout-x26410b-deblock=0:0
+
+# Strength of psychovisual optimization, default is "1.0:0.0" (string)
+#sout-x26410b-psy-rd=1.0:0.0
+
+# Use Psy-optimizations (boolean)
+#sout-x26410b-psy=1
+
+# H.264 level (string)
+#sout-x26410b-level=0
+
+# H.264 profile (string)
+#sout-x26410b-profile=high
+
+# Interlaced mode (boolean)
+#sout-x26410b-interlaced=0
+
+# Frame packing (integer)
+#sout-x26410b-frame-packing=-1
+
+# Force number of slices per frame (integer)
+#sout-x26410b-slices=0
+
+# Limit the size of each slice in bytes (integer)
+#sout-x26410b-slice-max-size=0
+
+# Limit the size of each slice in macroblocks (integer)
+#sout-x26410b-slice-max-mbs=0
+
+# HRD-timing information (string)
+#sout-x26410b-hrd=none
+
+# Set QP (integer)
+#sout-x26410b-qp=-1
+
+# Quality-based VBR (integer)
+#sout-x26410b-crf=23
+
+# Min QP (integer)
+#sout-x26410b-qpmin=10
+
+# Max QP (integer)
+#sout-x26410b-qpmax=51
+
+# Max QP step (integer)
+#sout-x26410b-qpstep=4
+
+# Average bitrate tolerance (float)
+#sout-x26410b-ratetol=1.000000
+
+# Max local bitrate (integer)
+#sout-x26410b-vbv-maxrate=0
+
+# VBV buffer (integer)
+#sout-x26410b-vbv-bufsize=0
+
+# Initial VBV buffer occupancy (float)
+#sout-x26410b-vbv-init=0.900000
+
+# QP factor between I and P (float)
+#sout-x26410b-ipratio=1.400000
+
+# QP factor between P and B (float)
+#sout-x26410b-pbratio=1.300000
+
+# QP difference between chroma and luma (integer)
+#sout-x26410b-chroma-qp-offset=0
+
+# Multipass ratecontrol (integer)
+#sout-x26410b-pass=0
+
+# QP curve compression (float)
+#sout-x26410b-qcomp=0.600000
+
+# Reduce fluctuations in QP (float)
+#sout-x26410b-cplxblur=20.000000
+
+# Reduce fluctuations in QP (float)
+#sout-x26410b-qblur=0.500000
+
+# How AQ distributes bits (integer)
+#sout-x26410b-aq-mode=1
+
+# Strength of AQ (float)
+#sout-x26410b-aq-strength=1.000000
+
+# Partitions to consider (string)
+#sout-x26410b-partitions=normal
+
+# Direct MV prediction mode (string)
+#sout-x26410b-direct=spatial
+
+# Direct prediction size (integer)
+#sout-x26410b-direct-8x8=1
+
+# Weighted prediction for B-frames (boolean)
+#sout-x26410b-weightb=1
+
+# Weighted prediction for P-frames (integer)
+#sout-x26410b-weightp=2
+
+# Integer pixel motion estimation method (string)
+#sout-x26410b-me=hex
+
+# Maximum motion vector search range (integer)
+#sout-x26410b-merange=16
+
+# Maximum motion vector length (integer)
+#sout-x26410b-mvrange=-1
+
+# Minimum buffer space between threads (integer)
+#sout-x26410b-mvrange-thread=-1
+
+# Subpixel motion estimation and partition decision quality (integer)
+#sout-x26410b-subme=7
+
+# Decide references on a per partition basis (boolean)
+#sout-x26410b-mixed-refs=1
+
+# Chroma in motion estimation (boolean)
+#sout-x26410b-chroma-me=1
+
+# Adaptive spatial transform size (boolean)
+#sout-x26410b-8x8dct=1
+
+# Trellis RD quantization (integer)
+#sout-x26410b-trellis=1
+
+# Framecount to use on frametype lookahead (integer)
+#sout-x26410b-lookahead=40
+
+# Use Periodic Intra Refresh (boolean)
+#sout-x26410b-intra-refresh=0
+
+# Use mb-tree ratecontrol (boolean)
+#sout-x26410b-mbtree=1
+
+# Early SKIP detection on P-frames (boolean)
+#sout-x26410b-fast-pskip=1
+
+# Coefficient thresholding on P-frames (boolean)
+#sout-x26410b-dct-decimate=1
+
+# Noise reduction (integer)
+#sout-x26410b-nr=0
+
+# Inter luma quantization deadzone (integer)
+#sout-x26410b-deadzone-inter=21
+
+# Intra luma quantization deadzone (integer)
+#sout-x26410b-deadzone-intra=11
+
+# Non-deterministic optimizations when threaded (boolean)
+#sout-x26410b-non-deterministic=0
+
+# CPU optimizations (boolean)
+#sout-x26410b-asm=1
+
+# PSNR computation (boolean)
+#sout-x26410b-psnr=0
+
+# SSIM computation (boolean)
+#sout-x26410b-ssim=0
+
+# Quiet mode (boolean)
+#sout-x26410b-quiet=0
+
+# SPS and PPS id numbers (integer)
+#sout-x26410b-sps-id=0
+
+# Access unit delimiters (boolean)
+#sout-x26410b-aud=0
+
+# Statistics (boolean)
+#sout-x26410b-verbose=0
+
+# Filename for 2 pass stats file (string)
+#sout-x26410b-stats=x264_2pass.log
+
+# Default preset setting used (string)
+#sout-x26410b-preset=
+
+# Default tune setting used (string)
+#sout-x26410b-tune=
+
+# x264 advanced options (string)
+#sout-x26410b-options=
 
 [x264] # H.264/MPEG-4 Part 10/AVC encoder (x264)
 
@@ -1567,6 +1800,17 @@ alsa-gain=4.492125
 # TCP command input (string)
 #rc-host=
 
+[demuxdump] # File dumper
+
+# Dump module (string)
+#demuxdump-access=file
+
+# Dump filename (string)
+#demuxdump-file=stream-demux.dump
+
+# Append to existing file (boolean)
+#demuxdump-append=0
+
 [adaptive] # Unified adaptive streaming for DASH/HLS
 
 # Adaptive Logic (string)
@@ -1591,17 +1835,6 @@ alsa-gain=4.492125
 
 # Force index creation (integer)
 #avi-index=0
-
-[demuxdump] # File dumper
-
-# Dump module (string)
-#demuxdump-access=file
-
-# Dump filename (string)
-#demuxdump-file=stream-demux.dump
-
-# Append to existing file (boolean)
-#demuxdump-append=0
 
 [diracsys] # Dirac video demuxer
 
@@ -1887,17 +2120,6 @@ alsa-gain=4.492125
 # Album art filename (string)
 #album-art-filename=
 
-[gnutls] # GNU TLS transport layer security
-
-# Use system trust database (boolean)
-#gnutls-system-trust=1
-
-# Trust directory (string)
-#gnutls-dir-trust=
-
-# TLS cipher priorities (string)
-#gnutls-priorities=NORMAL
-
 [audioscrobbler] # Submission of played songs to last.fm
 
 # Username (string)
@@ -1908,6 +2130,17 @@ alsa-gain=4.492125
 
 # Scrobbler URL (string)
 #scrobbler-url=post.audioscrobbler.com
+
+[gnutls] # GNU TLS transport layer security
+
+# Use system trust database (boolean)
+#gnutls-system-trust=1
+
+# Trust directory (string)
+#gnutls-dir-trust=
+
+# TLS cipher priorities (string)
+#gnutls-priorities=NORMAL
 
 [logger] # File logging
 
@@ -1969,7 +2202,7 @@ alsa-gain=4.492125
 #sout-avi-subject=
 
 # Encoder (string)
-#sout-avi-encoder=VLC Media Player - 3.0.6 Vetinari
+#sout-avi-encoder=VLC Media Player - 3.0.7.1 Vetinari
 
 # Keywords (string)
 #sout-avi-keywords=
@@ -2332,40 +2565,6 @@ alsa-gain=4.492125
 # Seek threshold (integer)
 #prefetch-seek-threshold=16384
 
-[bridge] # Bridge stream output
-
-# ID (integer)
-#sout-bridge-out-id=0
-
-# Destination bridge-in name (string)
-#sout-bridge-out-in-name=default
-
-# Delay (integer)
-#sout-bridge-in-delay=0
-
-# ID Offset (integer)
-#sout-bridge-in-id-offset=8192
-
-# Name of current instance (string)
-#sout-bridge-in-name=default
-
-# Fallback to placeholder stream when out of data (boolean)
-#sout-bridge-in-placeholder=0
-
-# Placeholder delay (integer)
-#sout-bridge-in-placeholder-delay=200
-
-# Wait for I frame before toggling placeholder (boolean)
-#sout-bridge-in-placeholder-switch-on-iframe=1
-
-[delay] # Delay a stream
-
-# Elementary Stream ID (integer)
-#sout-delay-id=0
-
-# Delay of the ES (ms) (integer)
-#sout-delay-delay=0
-
 [display] # Display stream output
 
 # Enable audio (boolean)
@@ -2646,6 +2845,40 @@ alsa-gain=4.492125
 
 # High priority (boolean)
 #sout-transcode-high-priority=0
+
+[bridge] # Bridge stream output
+
+# ID (integer)
+#sout-bridge-out-id=0
+
+# Destination bridge-in name (string)
+#sout-bridge-out-in-name=default
+
+# Delay (integer)
+#sout-bridge-in-delay=0
+
+# ID Offset (integer)
+#sout-bridge-in-id-offset=8192
+
+# Name of current instance (string)
+#sout-bridge-in-name=default
+
+# Fallback to placeholder stream when out of data (boolean)
+#sout-bridge-in-placeholder=0
+
+# Placeholder delay (integer)
+#sout-bridge-in-placeholder-delay=200
+
+# Wait for I frame before toggling placeholder (boolean)
+#sout-bridge-in-placeholder-switch-on-iframe=1
+
+[delay] # Delay a stream
+
+# Elementary Stream ID (integer)
+#sout-delay-id=0
+
+# Delay of the ES (ms) (integer)
+#sout-delay-delay=0
 
 [freetype] # Freetype2 font renderer
 

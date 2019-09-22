@@ -3,6 +3,8 @@
 # Encrypted Setup Here
 # https://wiki.voidlinux.org/Manual_install_w/full_disk_encryption
 # https://wiki.voidlinux.org/Install_LVM_LUKS
+# https://unixsheikh.com/tutorials/real-full-disk-encryption-using-grub-on-void-linux-for-bios.html
+# https://www.reddit.com/r/voidlinux/comments/d5dsa6/full_disk_encryption_with_hibernation/
 #
 # For the uber paranoid, mount your usb thumb drive to /boot/efi and install
 # also add it to /etc/fstab that way you cant boot without it plugged in.
@@ -55,6 +57,7 @@ echo voidvm > /etc/hostname
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 echo "en_US.UTF-8 UTF-8" >> /etc/default/libc-locales
 xbps-reconfigure -f glibc-locales
+ln -s /usr/share/zoneinfo/<PLACE>/<CITY> /etc/localtime
 
 # Add the encrypted drives to fstab
 wget https://raw.githubusercontent.com/glacion/genfstab/master/genfstab -o /usr/bin/genfstab

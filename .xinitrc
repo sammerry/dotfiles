@@ -15,4 +15,5 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Bspwm Window Manager
 exec bspwm -c $HOME/.config/bspwm/bspwmrc
+# exec awesome
 

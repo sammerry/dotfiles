@@ -3,6 +3,9 @@
 """
 Get a notification summary and body from mpc, then send it through dbus.
 https://developer.gnome.org/notification-spec/#protocol
+
+NOTE: requires dbus-python
+sudo xbps-install -Sy python3-dbus
 """
 
 from subprocess import check_output
