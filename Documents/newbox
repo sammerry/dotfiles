@@ -3,6 +3,8 @@
 # Encrypted Setup Here
 # https://wiki.voidlinux.org/Manual_install_w/full_disk_encryption
 # https://wiki.voidlinux.org/Install_LVM_LUKS
+# https://unixsheikh.com/tutorials/real-full-disk-encryption-using-grub-on-void-linux-for-bios.html
+# https://www.reddit.com/r/voidlinux/comments/d5dsa6/full_disk_encryption_with_hibernation/
 #
 # For the uber paranoid, mount your usb thumb drive to /boot/efi and install
 # also add it to /etc/fstab that way you cant boot without it plugged in.

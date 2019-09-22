@@ -10,6 +10,7 @@ bindsym $mod+Shift+Return exec urxvtc
 
 # start a browser
 bindsym $mod+o exec $browser
+bindsym $mod+i exec $browser --nowindow -R ":open -p"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -42,13 +43,6 @@ bindsym $mod+Shift+c reload
 # exit sway (logs you out of your Wayland session)
 # bindsym $mod+Shift+x exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 bindsym $mod+Shift+x exec swaymsg exit
-
-#
-# Multimedia Keys
-#
-# Gromit Mpx
-bindsym XF86LaunchA exec gromit-mpx --toggle
-bindsym XF86LaunchA+Shift exec gromit-mpx --clear
 
 # Audio Controls
 bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
