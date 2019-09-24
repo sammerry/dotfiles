@@ -187,5 +187,9 @@
   templatedir = ~/.git-templates
 
 [credential]
-	helper = /user/bin/pass-git-helper
+  helper = /user/bin/pass-git-helper
+
+[user]
+  email = TODO
+  name = TODO
 

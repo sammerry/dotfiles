@@ -1,0 +1,20 @@
+# vim: set tf=dosini
+
+[core]
+  repositoryformatversion = 0
+  filemode = true
+  bare = true
+
+[remote "origin"]
+  url = git@github.com:sammerry/dotfiles.git
+  fetch = +refs/heads/*:refs/remotes/origin/*
+
+[status]
+  showUntrackedFiles = no
+
+[filter "remove-mopidy-secrets"]
+  clean = "sed -e 's/\\(username\\|password\\|client_id\\|client_secret\\).=.*/#\\1 = TODO/'"
+
+[filter "remove-git-secrets"]
+  clean = "sed -e 's/\\w*\\(name\\|email\\).=.*/\\1 = TODO/'"
+

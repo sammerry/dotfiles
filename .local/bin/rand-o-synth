@@ -1,5 +1,6 @@
 #!/bin/bash
 rando=$(cat << EOF | shuf | shuf | head -n 1
+https://youtu.be/6ZhJjRBnWYk
 https://youtu.be/_Axa2YXonYM
 https://youtu.be/BfCgF10C58Q
 https://youtu.be/wCDa4f8sWnk
@@ -10,6 +11,7 @@ https://youtu.be/dR17U5-VKtw
 https://youtu.be/UkjFV-66E2c
 https://youtu.be/dh3JmHHbbmU
 https://youtu.be/P-BqmegCUpA
+https://youtu.be/6ZhJjRBnWYk
 EOF)
 
 echo $rando
