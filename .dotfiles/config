@@ -9,10 +9,6 @@
   url = git@github.com:sammerry/dotfiles.git
   fetch = +refs/heads/*:refs/remotes/origin/*
 
-[user]
-  email = sam.merry@gmail.com
-  name = Sam Merry
-
 [status]
   showUntrackedFiles = no
 
