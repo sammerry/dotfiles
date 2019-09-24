@@ -1,6 +1,7 @@
 # Dotfiles
 
 [Dotfiles Original Blog Post](https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/)
+[Recommended Arch Wiki Post](https://wiki.archlinux.org/index.php/Dotfiles)
 
 To init a new dotfiles repo
 ```
@@ -34,3 +35,4 @@ sudo dd bs=4M if=./void<your iso>.iso of=/dev/sdc status=progress oflag=sync
 https://wiki.voidlinux.org/Manual_install_w/full_disk_encryption
 https://wiki.voidlinux.org/Installation_on_UEFI,_via_chroot
 
+https://wiki.archlinux.org/index.php/Git#Filtering_confidential_information
