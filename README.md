@@ -36,3 +36,10 @@ https://wiki.voidlinux.org/Manual_install_w/full_disk_encryption
 https://wiki.voidlinux.org/Installation_on_UEFI,_via_chroot
 
 https://wiki.archlinux.org/index.php/Git#Filtering_confidential_information
+
+### Alsa Equalizer
+
+The caps.so package is mising a symlink and `alsamixer -D equal` wont work without it. After installing alsa plugins run the following.
+```
+ sudo ln -s /usr/lib/ladspa/caps.so /usr/lib/caps.so
+```

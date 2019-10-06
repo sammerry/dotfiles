@@ -15,7 +15,6 @@ alias merge="xrdb -merge ~/.Xresources"
 alias userlist="cut -d: -f1 /etc/passwd"
 alias ps='ps -aef --forest'
 alias vim='nvim'
-alias open='xdg-open'
 alias curl='curl -w @$HOME/.config/curl/format.txt'
 
 ################################################################################

@@ -140,8 +140,8 @@ export LS_COLORS="$LS_COLORS$LS_DOCKER$LS_VAGRANT"
 
 # Set vi mode in the terminal
 set -o vi
-EDITOR=nvim
-BROWSER=qutebrowser
+export EDITOR=nvim
+export BROWSER=qutebrowser
 
 
 # Set Java Home

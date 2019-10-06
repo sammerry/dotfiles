@@ -17,10 +17,29 @@
   untracked = blue
 
 [alias]
+
   # List tracked files
   ls = ls-tree --full-tree -r --name-only HEAD
+
+  # List most recent commit
   last = log -1
+
+  # Reset HARD
   fuck-it = reset --hard
+
+  # List all aliases
+  aliases = !git config --get-regexp alias | awk '{print $1}'
+
+  # List and sort contributors
+  contributors = !git shortlog --summary --numbered | sort
+
+  # Open the github url
+  open = "!f(){ \
+    $BROWSER `git remote -v | \
+    awk '/fetch/{print $2}' | \
+    sed -Ee 's#(git@|git://)#http://#' -e 's@com:@com/@'`| \
+    head -n1; \
+    }; f"
 
 [core]
   # Global `.gitattributes`

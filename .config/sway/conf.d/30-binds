@@ -16,7 +16,8 @@ bindsym $mod+i exec $browser --nowindow -R ":open -p"
 bindsym $mod+Shift+q kill
 
 # start your launcher
-bindsym $mod+d exec $menu
+#bindsym $mod+d exec $menu
+bindsym $mod+Space exec $menu
 
 # Wpa Gui
 bindsym $mod+u exec wpa_gui
@@ -86,10 +87,10 @@ bindsym $mod+Shift+e layout toggle split
 bindsym $mod+f fullscreen
 
 # Toggle the current focus between tiling and floating mode
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+Space floating toggle
 
 # Swap focus between the tiling area and the floating area
-bindsym $mod+space focus mode_toggle
+bindsym $mod+d focus mode_toggle
 
 # move focus to the parent container
 bindsym $mod+a focus parent

@@ -12,6 +12,39 @@
 #
 #
 # ###############################################################################
+# # Equalizer
+# ###############################################################################
+# #
+# # If alsamixer -D equal complains about caps.
+# # sudo ln -s /usr/lib/ladspa/caps.so /usr/lib/caps.so
+# #
+# ctl.equal {
+#     type equal;
+# }
+#
+# pcm.plugequal {
+#     type equal;
+#     # Modify the line below if you do not
+#     # want to use sound card 0.
+#     #slave.pcm "plughw:0,0";
+#     # by default we want to play from more sources at time:
+#     slave.pcm "plug:dmix";
+#     # slave.pcm "snd_card";
+# }
+#
+# # pcm.equal {
+# # If you do not want the equalizer to be your
+# # default soundcard comment the following
+# # line and uncomment the above line. (You can
+# # choose it as the output device by addressing
+# # it with specific apps,eg mpg123 -a equal 06.Back_In_Black.mp3)
+# pcm.!default {
+#     type plug;
+#     slave.pcm plugequal;
+# }
+#
+#
+# ###############################################################################
 # # Cards
 # ###############################################################################
 #
@@ -19,7 +52,7 @@
 #     # physical sound card
 #     type hw
 #     card 0
-#  }
+# }
 #
 # ctl.!default {
 #     # physical sound card
