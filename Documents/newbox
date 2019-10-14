@@ -1,9 +1,8 @@
 # MacbookPro Specific
 #
 # Encrypted Setup Here
-# https://wiki.voidlinux.org/Manual_install_w/full_disk_encryption
-# https://wiki.voidlinux.org/Install_LVM_LUKS
-# https://unixsheikh.com/tutorials/real-full-disk-encryption-using-grub-on-void-linux-for-bios.html
+# https://www.reddit.com/r/archlinux/comments/7np36m/detached_luks_header_full_disk_encryption_with/
+# https://wiki.voidlinux.org/Full_Disk_Encryption_w/Encrypted_Boot
 # https://www.reddit.com/r/voidlinux/comments/d5dsa6/full_disk_encryption_with_hibernation/
 #
 # For the uber paranoid, mount your usb thumb drive to /boot/efi and install
@@ -20,8 +19,7 @@ cryptsetup luksOpen /dev/sda2 crypt-pool
 
 vgcreate pool /dev/mapper/crypt-pool
 lvcreate --name root -L 50G pool
-lvcreate --name swap -L 32G pool
-lvcreate --name temp -L 32G pool
+lvcreate --name swap -L 8G pool
 lvcreate --name home -l 100%FREE pool
 
 mkswap /dev/mapper/pool-swap
@@ -44,16 +42,17 @@ mount /dev/mapper/pool-home /mnt/home
 mount --rbind /dev /mnt/dev
 mount --rbind /proc /mnt/proc
 mount --rbind /sys /mnt/sys
+mount --rbind /run /mnt/run
 
 # Install to mounted directories
-xbps-install -Sy -R http://auto.voidlinux.org/current -r /mnt base-system lvm2 cryptsetup grub-x86_64-efi void-repo-nonfree broadcom-wl-dkms xfsprogs neovim pastebinit
+xbps-install -Sy -R http://auto.voidlinux.org/current -r /mnt base-system lvm2 cryptsetup grub-x86_64-efi void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree broadcom-wl-dkms xfsprogs neovim pastebinit
 
 # Add root password and locales
 chroot /mnt /bin/bash
 chown root:root /
 chmod 755 /
 passwd root
-echo voidvm > /etc/hostname
+echo lappy > /etc/hostname
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 echo "en_US.UTF-8 UTF-8" >> /etc/default/libc-locales
 xbps-reconfigure -f glibc-locales
@@ -73,7 +72,7 @@ END
 # Makesure grub knows about encrypted disks
 cat >> /etc/defaults/grub <<END
 
-GRUB_CMDLINE_LINUX_DEFAULT="loglevel=4 rd.auto=1 cryptdevice=/dev/sda2:crypt-pool root=/dev/mapper/pool-root"
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=4 rd.auto=1 rd.luks.allow-discards cryptdevice=/dev/sda2:crypt-pool root=/dev/mapper/pool-root"
 GRUB_ENABLE_CRYPTODISK=y
 END
 
@@ -84,3 +83,4 @@ xbps-reconfigure -f linux4.19
 exit
 
 # shut down, remove usb and restart
+

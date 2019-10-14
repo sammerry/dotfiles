@@ -52,8 +52,8 @@ bindsym XF86AudioMute exec amixer set Master 1+ toggle
 bindsym XF86AudioStop exec mpc stop
 
 # Monitor Brightness
-bindsym XF86MonBrightnessUp exec light -A 5
-bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86MonBrightnessUp exec light -A 1
+bindsym XF86MonBrightnessDown exec light -U 1
 
 #
 # Moving around:
@@ -76,7 +76,7 @@ bindsym $mod+Right focus right
 # $mod+b or $mod+v, for horizontal and vertical splits
 # respectively.
 bindsym $mod+b splith
-bindsym $mod+v splitv
+bindsym $mod+n splitv
 
 # Switch the current container between different layout styles
 bindsym $mod+Shift+s layout stacking

@@ -113,6 +113,10 @@ c.content.headers.do_not_track = True
 # Type: Bool
 c.content.images = True
 
+# Enable JavaScript Clipboard
+# Type: Bool
+c.content.javascript.can_access_clipboard = True
+
 # Enable JavaScript.
 # Type: Bool
 config.set('content.javascript.enabled', True, 'file://*')

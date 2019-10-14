@@ -37,11 +37,6 @@ super + e
   urxvtc -name 'Ipython' -e '/home/lappy/.config/sxhkd/scripts/ipython.sh'
 #   kitty --name 'Ipython' '/home/lappy/.config/sxhkd/scripts/ipython.sh'
 
-# Use a tmux session to wrap irssi
-super + i
-  urxvtc -name 'Ipython' -e '/home/lappy/.config/sxhkd/scripts/irssi.sh'
-#  kitty --name 'Irssi' '/home/lappy/.config/sxhkd/scripts/irssi.sh'
-
 # Toggle pseudo tiling of window
 super + p
   bspc node --state \~pseudo_tiled
@@ -49,6 +44,9 @@ super + p
 # Open slack web
 super + b
   /usr/bin/qutebrowser :open an.slack.com
+
+super + i
+  /usr/bin/qutebrowser --nowindow -R ":open -p"
 
 super + t
   urxvtc -name 'GoTop' -e gotop
@@ -69,10 +67,6 @@ super + Escape
 super + Return
 #  urxvtc
   kitty
-
-#Ncurses Calendar
-super + c
-  kitty --name 'Wyrd' 'wyrd'
 
 #########################
 # SUPER + SHIFT KEYS    #
