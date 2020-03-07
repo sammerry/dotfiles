@@ -6,6 +6,7 @@
 # Copy this to ~/.config/sway/config and edit it to your liking.
 #
 # Read `man 5 sway` for a complete reference.
+exec --no-startup-id wal -a 90 --theme /home/lappy/.config/wal/colorschemes/dark/mine.json
 exec --no-startup-id xrdb ~/.Xresources
 exec --no-startup-id urxvtd
 exec --no-startup-id redshift -m wayland

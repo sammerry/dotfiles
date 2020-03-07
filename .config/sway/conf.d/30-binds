@@ -26,7 +26,7 @@ bindsym $mod+u exec wpa_gui
 bindsym $mod+m exec $term --name 'Ncmpcpp' 'ncmpcpp'
 
 # Screenshot
-bindsym $mod+s exec grim -g '$(slurp)' ~/Pictures/screenshots/screenshot.png
+bindsym $mod+s exec grim -g "$(slurp)" ~/Pictures/screenshots/screenshot.png
 
 # Simple Mixer
 bindsym $mod+e exec $term --name 'AlsaMixer' 'alsamixer'
