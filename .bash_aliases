@@ -65,9 +65,6 @@ alias in2csv='docker run --rm -i \
 alias csvjson='docker run --rm  -i \
   sammerry/csvkit /usr/local/bin/csvjson'
 
-# upe psql
-alias psql='docker run --net host -e PGPASSWORD=pass --rm -it postgres:9.3-alpine psql'
-
 ################################################################################
 # IRC
 ################################################################################
