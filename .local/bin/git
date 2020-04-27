@@ -1,0 +1,17 @@
+#!/bin/bash
+
+function run_git(){
+    bash -c "/bin/git $(printf ' %q' "$@")"
+}
+
+if [ -t 1 ]; then
+    case "$*" in
+    log)
+        run_git log --graph --oneline --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+        exit $?
+        ;;
+    esac
+fi
+
+run_git "$@"
+

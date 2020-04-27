@@ -81,6 +81,14 @@
   # Enable the filesystem cache (for git bash | windows)
   fscache = true
 
+[status]
+  short = true
+  branch = true
+
+[log]
+  abbrevCommit = true
+  decorate = true
+
 [grep]
   lineNumber = true
   extendedRegexp = true

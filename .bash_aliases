@@ -53,18 +53,6 @@ alias kafkacat='docker run --net host --rm -i \
 alias ksql='docker run --net host -i --rm \
   confluentinc/cp-ksql-cli:5.0.0-beta180702222458'
 
-# use csvkit to generate sql from csv
-alias csvsql='docker run --rm -i --net host \
-  sammerry/csvkit /usr/bin/csvsql'
-
-# use csvkit to convert to csv
-alias in2csv='docker run --rm -i \
-  sammerry/csvkit /usr/local/bin/in2csv'
-
-# use csvkit to convert csv to json
-alias csvjson='docker run --rm  -i \
-  sammerry/csvkit /usr/local/bin/csvjson'
-
 ################################################################################
 # IRC
 ################################################################################
