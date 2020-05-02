@@ -25,15 +25,16 @@ set $up k
 set $right l
 
 # Your preferred terminal emulator
-set $term kitty
+set $term kitty /bin/fish
 
 # Your preferred browser
-set $browser qutebrowser
+set $browser /home/lappy/.local/bin/qutebrowser
 
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 # set $menu "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'monospace-10' -p 'dmenu%'"
-set $menu rofi -modi drun -show drun -theme dracula
+# set $menu rofi -modi drun -show drun -theme dracula
+set $menu wofi --conf /home/lappy/.config/wofi/wofi.conf --style /home/lappy/.config/wofi/dracula.style
 
 ### Output configuration
 #
