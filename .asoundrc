@@ -1,133 +1,26 @@
-# NOTE: to use the loopback with cava you need to make sure the loop back device works
-# `sudo modprobe snd_aloop` should give you a loopback device to test with
-# `options snd-aloop index=1` in /etc/modprobe/50-alsa.cfg should ensure it exists every start
 #
-# Below is a multi plugin that uses dmix to support multiple input
-# soursces (browser, mpd, ... etc). And will write out to two output sources
-# to support visaualizations through cava and play audio through speakers
-#
-# [!default] → multi → dmix → hw [normal]
-#                    ↳ dmix → hw [loopback]
-# https://unix.stackexchange.com/a/194631/181309
+# Requires a loopback interface in /etc/modprobe.d
+# you can manually create it with `sudo modprobe snd_aloop` or by dropping `options snd-aloop index=1` to `/etc/modprobe.d/alsa-base.conf`
 #
 #
-# ###############################################################################
-# # Equalizer
-# ###############################################################################
-# #
-# # If alsamixer -D equal complains about caps.
-# # sudo ln -s /usr/lib/ladspa/caps.so /usr/lib/caps.so
-# #
-# ctl.equal {
-#     type equal;
-# }
-#
-# pcm.plugequal {
-#     type equal;
-#     # Modify the line below if you do not
-#     # want to use sound card 0.
-#     #slave.pcm "plughw:0,0";
-#     # by default we want to play from more sources at time:
-#     slave.pcm "plug:dmix";
-#     # slave.pcm "snd_card";
-# }
-#
-# # pcm.equal {
-# # If you do not want the equalizer to be your
-# # default soundcard comment the following
-# # line and uncomment the above line. (You can
-# # choose it as the output device by addressing
-# # it with specific apps,eg mpg123 -a equal 06.Back_In_Black.mp3)
-# pcm.!default {
-#     type plug;
-#     slave.pcm plugequal;
-# }
-#
-#
-# ###############################################################################
-# # Cards
-# ###############################################################################
-#
-# pcm.snd_card {
-#     # physical sound card
-#     type hw
-#     card 0
-# }
-#
-# ctl.!default {
-#     # physical sound card
-#     type hw
-#     card 0
-# }
-#
-# ###############################################################################
-# # Dmixers
-# ###############################################################################
-#
-# pcm.dmixer {
-#     # software mixer for sound card
-#     type dmix
-#     ipc_key 1024
-#     ipc_perm 0666 # allow other users
-#     slave.pcm "snd_card"
-#     slave {
-#         period_time 0
-#         period_size 1024
-#         buffer_size 4096
-#         channels 2 # must match bindings
-#     }
-#     bindings {
-#         0 0
-#         1 1
-#     }
-# }
-#
-# pcm.dmixerloop {
-#     # software mixer for loopback device
-#     type dmix
-#     ipc_key 2048
-#     ipc_perm 0666 # allow other users
-#     slave.pcm "hw:Loopback,0,0"
-#     slave {
-#         period_time 0
-#         period_size 1024
-#         buffer_size 4096
-#         channels 2 # must match bindings
-#     }
-#     bindings {
-#         0 0
-#         1 1
-#     }
-# }
-#
-# pcm.!default {
-#     # play to sound card, loopback will catch it
-#     type asym
-#     playback.pcm "out"
-#     capture.pcm "snd_card"
-# }
-#
-# ###############################################################################
-# # Multi Out
-# ###############################################################################
-# pcm.out {
-#     type plug
-#     slave.pcm {
-#         type multi
-#         slaves {
-#             a { channels 2 pcm "dmixer" }
-#             b { channels 2 pcm "dmixerloop" }
-#         }
-#         bindings {
-#             0 { slave a channel 0 }
-#             1 { slave a channel 1 }
-#             2 { slave b channel 0 }
-#             3 { slave b channel 1 }
-#         }
-#     }
-#     ttable [
-#         [ 1 0 1 0 ]   # left  -> a.left,  b.left
-#         [ 0 1 0 1 ]   # right -> a.right, b.right
-#     ]
-# }
-#
+pcm.!default {
+    type plug       # <-- no { here
+    slave.pcm {
+        type multi
+        slaves {
+            a { channels 2 pcm "hw:0,0" }  # the real device
+            b { channels 2 pcm "hw:Loopback,0" }  # the loopback driver
+        }
+        bindings {
+            0 { slave a channel 0 }
+            1 { slave a channel 1 }
+            2 { slave b channel 0 }
+            3 { slave b channel 1 }
+        }
+    }
+    ttable [
+        [ 1 0 1 0 ]   # left  -> a.left,  b.left
+        [ 0 1 0 1 ]   # right -> a.right, b.right
+    ]
+}
+
