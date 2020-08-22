@@ -107,7 +107,7 @@ c.content.geolocation = 'ask'
 # read from JavaScript is always the global value.
 # Type: String
 c.content.headers.accept_language = 'en-US,en;q=0.5'
-c.content.headers.user_agent = 'Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101 Firefox/68.0'
+c.content.headers.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36'
 c.content.headers.custom = {"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"}
 
 # Value to send in the `DNT` header. When this is set to true,
@@ -239,10 +239,6 @@ c.input.insert_mode.plugins = False
 #   - uk-UA: Ukrainian (Ukraine)
 #   - vi-VN: Vietnamese (Viet Nam)
 c.spellcheck.languages = ['en-US']
-
-# Hide the statusbar unless a message is shown.
-# Type: Bool
-c.statusbar.hide = True
 
 # Padding (in pixels) for the statusbar.
 # Type: Padding
@@ -704,10 +700,6 @@ c.fonts.prompts = '10pt monospace'
 # Font used in the statusbar.
 # Type: Font
 c.fonts.statusbar = '9pt monospace'
-
-# Font used in the tab bar.
-# Type: QtFont
-c.fonts.tabs = '10pt monospace'
 
 # Font family for standard fonts.
 # Type: FontFamily

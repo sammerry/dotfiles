@@ -6,7 +6,7 @@
 $gap=10
 
 #Color template
-. /home/lappy/.cache/wal/bspwm
+# . /home/lappy/.cache/wal/bspwm
 
 # Padding
 bspc config border_width           2

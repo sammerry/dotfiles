@@ -49,7 +49,7 @@ conky -c $HOME/.config/bspwm/system-overview
 compton --config $HOME/.config/bspwm/compton.conf &
 
 # Screen Writer
-gromit-mpx -k none &
+# gromit-mpx -k none &
 
 # Euclid Window Balancing
 /home/lappy/.bin/euclid_balancer &
