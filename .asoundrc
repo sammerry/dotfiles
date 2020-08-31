@@ -1,6 +1,7 @@
 #
 # Requires a loopback interface in /etc/modprobe.d
 # you can manually create it with `sudo modprobe snd_aloop` or by dropping `options snd-aloop index=1` to `/etc/modprobe.d/alsa-base.conf`
+# you will also have to enable snd-aloop kernel module. create a file in `/etc/modules-load.d/snd.conf` and add the line `snd-aloop` to load at boot
 #
 #
 pcm.!default {

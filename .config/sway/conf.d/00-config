@@ -60,6 +60,7 @@ output eDP-1 scale 2
 #          timeout 300 'swaylock -f -c 000000' \
 #          timeout 600 'swaymsg "output * dpms off"' \
 #               resume 'swaymsg "output * dpms on"' \
+#          before-sleep 'output * enable && swaylock -f' \
 #          before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -69,7 +70,7 @@ exec swayidle -w \
          timeout 300 'swaylock -f' \
          timeout 600 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
-         before-sleep 'output * enable && swaylock -f' \
+         before-sleep 'swaylock -f' \
          lock 'swaylock'
 
 ### Input configuration

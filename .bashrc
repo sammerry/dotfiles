@@ -198,3 +198,8 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lappy/.mujoco/mujoco200/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lappy/.mujoco/mjpro150/bin
+export QT_QPA_PLATFORM=wayland
+
+if [ "$(tty)" = "/dev/tty1" ]; then
+  exec sway
+fi
