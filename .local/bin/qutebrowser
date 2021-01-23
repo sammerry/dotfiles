@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export QT_QPA_PLATFORM=xcb
+export QUTE_SKIP_WAYLAND_CHECK=1
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+/bin/qutebrowser "$@"

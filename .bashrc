@@ -145,7 +145,8 @@ export BROWSER=qutebrowser
 
 
 # Set Java Home
-export JAVA_HOME=/usr/lib/jvm/openjdk
+export JAVA_HOME=/usr/lib/jvm/openjdk11
+export PATH="/usr/lib/jvm/openjdk11/bin/:$PATH"
 
 # Add Cargo Bin
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -176,12 +177,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # The next line updates PATH for the Azure Cloud SDK.
 if [ -f '/home/lappy/lib/azure-cli/az.completion' ]; then . '/home/lappy/lib/azure-cli/az.completion'; fi
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/lappy/google-cloud-sdk/path.bash.inc' ]; then . '/home/lappy/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/lappy/google-cloud-sdk/completion.bash.inc' ]; then . '/home/lappy/google-cloud-sdk/completion.bash.inc'; fi
-
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
@@ -201,5 +196,11 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/lappy/.mujoco/mjpro150/bin
 export QT_QPA_PLATFORM=wayland
 
 if [ "$(tty)" = "/dev/tty1" ]; then
-  exec sway
+#  exec sway
 fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/lappy/google-cloud-sdk/path.bash.inc' ]; then . '/home/lappy/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/lappy/google-cloud-sdk/completion.bash.inc' ]; then . '/home/lappy/google-cloud-sdk/completion.bash.inc'; fi

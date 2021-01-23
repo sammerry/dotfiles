@@ -104,7 +104,7 @@ super + shift + s
   pkill -USR1 -x sxhkd
 
 #kill
-super + shift + q
+super + q
   bspc node -c
 
 #Logout
@@ -125,7 +125,7 @@ super + shift + i
   /home/lappy/.config/sxhkd/scripts/invert.sh
 
 #Quick monitor layout switching from rofi
-super + shift + b
+super + space
   ls $HOME/.screenlayout/* | rofi -dmenu | bash
 
 
@@ -266,8 +266,8 @@ super + alt + {_,shift + }{h,j,k,l}
   ~/.config/bspwm/scripts/move-window {_,edge-}{west,south,north,east}
 
 # set the window state
-super + space
-  bspc node -t {tiled,floating}
+# super + space
+#   bspc node -t {tiled,floating}
 
 # Focus parent/brother/first/second for preselection
 super + ctrl + {e,r,t,y}
