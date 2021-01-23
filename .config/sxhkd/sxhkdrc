@@ -92,7 +92,7 @@ super + shift + n
   kitty neofetch_and_chill
 
 # Rofi
-super + shift + d
+super + space
   rofi -modi drun -show run
 
 #Reload bspwm
@@ -125,7 +125,7 @@ super + shift + i
   /home/lappy/.config/sxhkd/scripts/invert.sh
 
 #Quick monitor layout switching from rofi
-super + space
+super + shift + space
   ls $HOME/.screenlayout/* | rofi -dmenu | bash
 
 

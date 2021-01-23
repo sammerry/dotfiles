@@ -1,7 +1,6 @@
 rofi.columns:           1
 rofi.separator-style:   dash
 rofi.fullscreen:        false
-rofi.padding:           730
 rofi.hide-scrollbar:    true
 rofi.line-margin:       5
 rofi.fake-transparency: false
@@ -20,4 +19,4 @@ rofi.display-run:
 rofi.matching:          fuzzy
 rofi.sort:              true
 rofi.case_sensitive:    false
-
+rofi.theme: ~/.config/rofi/dracula.rasi
