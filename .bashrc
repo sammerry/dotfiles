@@ -92,8 +92,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f ~/.bash_aliases_linux ]; then
+    . ~/.bash_aliases_linux
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -204,3 +204,8 @@ if [ -f '/home/lappy/google-cloud-sdk/path.bash.inc' ]; then . '/home/lappy/goog
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/lappy/google-cloud-sdk/completion.bash.inc' ]; then . '/home/lappy/google-cloud-sdk/completion.bash.inc'; fi
+
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION
